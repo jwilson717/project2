@@ -1,5 +1,5 @@
 const express = require('express');
-const body = require('body-parser');
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8080;
 const { Pool } = require('pg');
 const pool = new Pool({connectionString: process.env.DATABASE_URL});
