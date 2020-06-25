@@ -11,5 +11,10 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 
+app.get('/', function (req, res) {
+   res.writeHead(200, {'Content-Type':'text/html'});
+   res.write('index.html');
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
