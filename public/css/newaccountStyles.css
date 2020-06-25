@@ -1,0 +1,13 @@
+ form {
+    margin: auto 75px;
+ }
+
+ .row {
+    min-height: 100vh;
+ }
+
+ @media screen and (max-width: 480px) {
+   form {
+      margin: auto;
+   }
+ }

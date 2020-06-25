@@ -12,8 +12,7 @@ app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 
 app.get('/newaccount', function (req, res) {
-   res.writeHead(200, {"Content-Type":"text/html"});
-   res.write('/newaccount.html');
+   res.render('newaccount', {query: req.query});
 });
 
 app.listen(PORT);
