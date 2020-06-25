@@ -1,3 +1,11 @@
+#header {
+   background-color: lightskyblue;
+}
+
+#header h1 {
+   font-size: 3em;
+}
+
 body {
    background-color: lightblue;
 }
