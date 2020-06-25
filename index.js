@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
    res.writeHead(200, {'Content-Type':'text/html'});
-   res.write('index.html');
+   res.write('welcome.html');
 });
 
 app.listen(PORT);
