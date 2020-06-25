@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 8080;
 const { Pool } = require('pg');
 const pool = new Pool({connectionString: process.env.DATABASE_URL});
 
-const app = express();
+var app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
    // res.writeHead(200, {'Content-Type':'text/html'});
    res.write('welcome.html');
-   res.end();
+   // res.end();
 });
 
 app.listen(PORT);
