@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-   res.writeHead(200, {'Content-Type':'text/html'});
+   // res.writeHead(200, {'Content-Type':'text/html'});
    res.write('welcome.html');
    res.end();
 });
