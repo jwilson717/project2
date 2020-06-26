@@ -29,5 +29,9 @@ app.post('/newaccount', function (req, res) {
    });
 });
 
+app.get('/dashboard', function (req, res) {
+   res.render('dashboard', {query: req.query});
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
