@@ -49,7 +49,13 @@
          let ajax = new XMLHttpRequest();
          ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-               document.getElementById('error').innerHTML = this.responseText;
+               let data = JSON.parse(this.responseText);
+               if (data.status == 'Error') {
+                  document.getElementById('error').innerHTML = this.responseText;
+               } else if (data.status == 'Success') {
+                  window.location.replace("/dashboard");
+               }
+               
             }
          };
          ajax.open('POST', '/newaccount', true);
