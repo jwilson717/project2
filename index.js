@@ -22,7 +22,17 @@ app.post('/newaccount', function (req, res) {
          console.log(err);
          return;
       }
-      createAccount(req.body.fname, req.body.lname, req.body.email, req.body.username, hash);
+      pool.connect(function (err, client, done){
+         if(err) throw err;
+         client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, hash], function (err, response) {
+            done();
+            if(err) {
+              return {status: 'Error', message: 'Error Creating Account'};
+            } else {
+               return {status: 'Success', message: 'dashboard'};
+            }
+         });
+      });
    });
 });
 
@@ -32,17 +42,3 @@ app.get('/dashboard', function (req, res) {
 
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
-
-function createAccount(fname, lname, email, username, password) {
-   pool.connect(function (err, client, done){
-      if(err) throw err;
-      client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [fname, lname, email, username, password], function (err, response) {
-         done();
-         if(err) {
-            res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
-         } else {
-            res.send(JSON.stringify({status: 'Success', message: 'dashboard'}));
-         }
-      });
-   });
-}
