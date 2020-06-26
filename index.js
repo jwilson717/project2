@@ -15,5 +15,19 @@ app.get('/newaccount', function (req, res) {
    res.render('newaccount', {query: req.query});
 });
 
+app.post('/newaccount', function (req, res) {
+   pool.connect(function (err, client, done){
+      if(err) throw err;
+      client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password], function (err, res) {
+         done();
+         if(err) {
+            res.send('Error Adding Account');
+         } else {
+            res.redirect('/dashboard');
+         }
+      });
+   });
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
