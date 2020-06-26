@@ -18,7 +18,7 @@ app.get('/newaccount', function (req, res) {
 app.post('/newaccount', function (req, res) {
    pool.connect(function (err, client, done){
       if(err) throw err;
-      client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password], function (err, res) {
+      client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password], function (err, response) {
          done();
          if(err) {
             res.send('Error Adding Account');
