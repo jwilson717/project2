@@ -27,9 +27,9 @@ app.post('/newaccount', function (req, res) {
          client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, hash], function (err, response) {
             done();
             if(err) {
-              return {status: 'Error', message: 'Error Creating Account'};
+              res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
             } else {
-               return {status: 'Success', message: 'dashboard'};
+               res.send(JSON.stringify({status: 'Success', message: 'dashboard'}));
             }
          });
       });
