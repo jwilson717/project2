@@ -51,7 +51,7 @@
             if (this.readyState == 4 && this.status == 200) {
                let data = JSON.parse(this.responseText);
                if (data.status == 'Error') {
-                  document.getElementById('error').innerHTML = this.responseText;
+                  document.getElementById('error').innerHTML = data.message;
                } else if (data.status == 'Success') {
                   window.location.replace("/dashboard");
                }
