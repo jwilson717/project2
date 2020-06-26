@@ -23,7 +23,7 @@ app.post('/newaccount', function (req, res) {
          if(err) {
             res.send('Error Adding Account');
          } else {
-            res.redirect('/dashboard');
+            res.render('dashboard');
          }
       });
    });
