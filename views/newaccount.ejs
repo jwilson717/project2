@@ -40,31 +40,31 @@
       function create() {
          let fname = document.getElementById('fname').value;
          if (fname == '') {
-            document.getElementById('Error').innerHTML = 'First Name is Required';
+            document.getElementById('error').innerHTML = 'First Name is Required';
             return;
          }
          let lname = document.getElementById('lname').value;
          if (lname == '') {
-            document.getElementById('Error').innerHTML = 'Last Name is Required';
+            document.getElementById('error').innerHTML = 'Last Name is Required';
             return;
          }
          let email = document.getElementById('email').value;
          if (email == '') {
-            document.getElementById('Error').innerHTML = 'Please Provide and Email';
+            document.getElementById('error').innerHTML = 'Please Provide and Email';
             return;
          }
          let username = document.getElementById('username').value;
          if (username == '') {
-            document.getElementById('Error').innerHTML = 'Please Provide a Username';
+            document.getElementById('error').innerHTML = 'Please Provide a Username';
             return;
          }
          let pattern = /^\S+@\S+.\S+$/;
          if (!pattern.test(email)) {
-            document.getElementById('Error').innerHTML = 'Please provide a valid email';
+            document.getElementById('error').innerHTML = 'Please provide a valid email';
          }
          let password = document.getElementById('password').value;
          if (password == '') {
-            document.getElementById('Error').innerHTML = 'Please Provide a Password';
+            document.getElementById('error').innerHTML = 'Please Provide a Password';
             return;
          }
       
