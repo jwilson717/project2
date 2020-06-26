@@ -31,22 +31,21 @@
                <div class='form-group input-group'>
                   <input type="password" name="password" id="password" class='form-control' placeholder="Password" required>
                </div>
-               <button class='btn btn-primary' onclick='create()'>Create Account</button>
+               <button type='button' class='btn btn-primary' onclick='create()'>Create Account</button>
             </form>
          </div>
       </div>      
    </main>
    <script>
       function create() {
+         console.log('test');
          let fname = document.getElementById('fname').value;
          let lname = document.getElementById('lname').value;
          let email = document.getElementById('email').value;
-         let pattern = /^\S+@\S+.\S+$/;
-         if (!pattern.test(email)) {
-            document.getElementById('email').setCustomVailidty('Please enter a valid email address');
-         }
          let username = document.getElementById('username').value;
          let password = document.getElementById('password').value;
+      
+         console.log('Test');
          let data = {fname: fname, lname: lname, email: email, username: username, password: password};
 
          let ajax = new XMLHttpRequest();
