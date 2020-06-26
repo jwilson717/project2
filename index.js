@@ -22,17 +22,7 @@ app.post('/newaccount', function (req, res) {
          console.log(err);
          return;
       }
-      pool.connect(function (err, client, done){
-         if(err) throw err;
-         client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password], function (err, response) {
-            done();
-            if(err) {
-               res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
-            } else {
-               res.send(JSON.stringify({status: 'Success', message: 'dashboard'}));
-            }
-         });
-      });
+      createAccount(req.body.fname, req.body.lname, req.body.email, req.body.username, hash);
    });
 });
 
@@ -42,3 +32,17 @@ app.get('/dashboard', function (req, res) {
 
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
+
+function createAccount(fname, lname, email, username, password) {
+   pool.connect(function (err, client, done){
+      if(err) throw err;
+      client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [fname, lname, email, username, password], function (err, response) {
+         done();
+         if(err) {
+            res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
+         } else {
+            res.send(JSON.stringify({status: 'Success', message: 'dashboard'}));
+         }
+      });
+   });
+}
