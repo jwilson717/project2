@@ -6,6 +6,10 @@
     min-height: 100vh;
  }
 
+ #error {
+    color: red;
+ }
+
  @media screen and (max-width: 480px) {
    form {
       margin: auto;
