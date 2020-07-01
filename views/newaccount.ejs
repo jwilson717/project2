@@ -73,7 +73,19 @@
                if (data.status == 'Error') {
                   $('#error').html(data.message);
                } else if (data.status == 'Success') {
-                  $.redirect('/dashboard', {username: data.username});
+                  var form = $(document.createElement('form'));
+                  $(form).attr("action", "/dashboard");
+                  $(form).attr("method", "POST");
+                  $(form).css("display", "none");
+
+                  var acUsername = $("<input>")
+                  .attr("type", "text")
+                  .attr("name", "username")
+                  .val(data.username);
+                  $(form).append($(acUsername));
+
+                  form.appendTo( document.body );
+                  $(form).submit();
                }
             });
          });
