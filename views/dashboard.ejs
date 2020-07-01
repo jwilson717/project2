@@ -28,7 +28,9 @@
    <script>
       $(document).ready(function () {
          $('#searchbtn').click(function () {
-            $.post('/search', $('#searchform').serialize(), function (data){
+            let info = $('#searchform').serialize();
+            console.log(info);
+            $.post('/search', info, function (data){
                $('#results').html(data);
             });
          });
