@@ -73,6 +73,7 @@
                if (res.status == 'Error') {
                   $('#error').html(data.message);
                } else if (res.status == 'Success') {
+                  console.log(data.username);
                   redirect(data.username);
                }
             });
