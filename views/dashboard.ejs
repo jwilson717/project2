@@ -28,9 +28,11 @@
    <script>
       $(document).ready(function () {
          $('#searchbtn').click(function () {
-            let info = JSON.stringify($('#searchform').serialize());
+            let searchstr = $('#search').val();
+            let name = <%= body.username %>;
+            let info = {username: name, search: searchstr};
             console.log(info);
-            $.post('/search', info, function (data){
+            $.post('/search', JSON.stringify(info), function (data){
                $('#results').html(data);
             });
          });
