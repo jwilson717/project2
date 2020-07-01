@@ -29,14 +29,14 @@ app.post('/newaccount', function (req, res) {
             if(err) {
               res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
             } else {
-               res.send(JSON.stringify({status: 'Success', message: 'dashboard'}));
+               res.send(JSON.stringify({status: 'Success', message: 'dashboard', , username: req.body.username}));
             }
          });
       });
    });
 });
 
-app.get('/dashboard', function (req, res) {
+app.post('/dashboard', function (req, res) {
    res.render('dashboard', {query: req.query});
 });
 

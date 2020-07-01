@@ -31,12 +31,53 @@
                <div class='form-group input-group'>
                   <input type="password" name="password" id="password" class='form-control' placeholder="Password" required>
                </div>
-               <button type='button' class='btn btn-primary' onclick='create()'>Create Account</button>
+               <button type='button' class='btn btn-primary' id='create'>Create Account</button>
             </form>
          </div>
       </div>      
    </main>
+   <script src='jquery-3.5.1.min.js'></script>
    <script>
+      $(document).ready(function () {
+         $('#create').click(function () {
+            let fname = document.getElementById('fname').value;
+            if (fname == '') {
+               document.getElementById('error').innerHTML = 'First Name is Required';
+               return;
+            }
+            let lname = document.getElementById('lname').value;
+            if (lname == '') {
+               document.getElementById('error').innerHTML = 'Last Name is Required';
+               return;
+            }
+            let email = document.getElementById('email').value;
+            if (email == '') {
+               document.getElementById('error').innerHTML = 'Please Provide an Email';
+               return;
+            }
+            let username = document.getElementById('username').value;
+            if (username == '') {
+               document.getElementById('error').innerHTML = 'Please Provide a Username';
+               return;
+            }
+            
+            let password = document.getElementById('password').value;
+            if (password == '') {
+               document.getElementById('error').innerHTML = 'Please Provide a Password';
+               return;
+            }
+         
+            let info = {fname: fname, lname: lname, email: email, username: username, password: password};
+            $.post('/newaccount', info, function (data) {
+               let res = JSON.parse(data);
+               if (data.status == 'Error') {
+                  $('#error').html(data.message);
+               } else if (data.status == 'Success') {
+                  $.redirect('/dashboard', {username: data.username});
+               }
+            });
+         });
+      });
       function create() {
          let fname = document.getElementById('fname').value;
          if (fname == '') {
