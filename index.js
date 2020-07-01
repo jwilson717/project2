@@ -37,7 +37,7 @@ app.post('/newaccount', function (req, res) {
 });
 
 app.post('/dashboard', function (req, res) {
-   res.render('dashboard', {query: req.query});
+   res.render('dashboard', {query: req.body});
 });
 
 app.listen(PORT);
