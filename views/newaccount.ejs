@@ -70,6 +70,7 @@
             let info = {fname: fname, lname: lname, email: email, username: username, password: password};
             $.post('/newaccount', info, function (data) {
                let res = JSON.parse(data);
+               console.log(res);
                if (data.status == 'Error') {
                   $('#error').html(data.message);
                } else if (data.status == 'Success') {
