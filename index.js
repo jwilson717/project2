@@ -29,7 +29,7 @@ app.post('/newaccount', function (req, res) {
             if(err) {
               res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
             } else {
-               res.send(JSON.stringify({status: 'Success', message: 'dashboard', , username: req.body.username}));
+               res.send(JSON.stringify({status: 'Success', message: 'dashboard', username: req.body.username}));
             }
          });
       });
