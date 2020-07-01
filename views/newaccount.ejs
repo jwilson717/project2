@@ -80,7 +80,7 @@
       });
 
       function redirect(name) {
-         console.log('redirect2');
+         console.log(name);
          var f = document.createElement('form');
          f.action='/dashboard';
          f.method='POST';
@@ -92,7 +92,7 @@
          f.appendChild(i);
 
          document.body.appendChild(f);
-         f.submit();
+         // f.submit();
       }
 
       function create() {
