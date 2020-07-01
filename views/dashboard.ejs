@@ -30,9 +30,9 @@
          $('#searchbtn').click(function () {
             let searchstr = $('#search').val();
             let name ='<%= body.username %>';
-            let info = {username: name, search: searchstr};
+            let info = JSON.stringify({username: name, search: searchstr});
             console.log(info);
-            $.post('/search', JSON.stringify(info), function (data){
+            $.post('/search', info, function (data){
                $('#results').html(data);
             });
          });
