@@ -73,23 +73,27 @@
                if (data.status == 'Error') {
                   $('#error').html(data.message);
                } else if (data.status == 'Success') {
-                  var form = $(document.createElement('form'));
-                  $(form).attr("action", "/dashboard");
-                  $(form).attr("method", "POST");
-                  $(form).css("display", "none");
-
-                  var acUsername = $("<input>")
-                  .attr("type", "text")
-                  .attr("name", "username")
-                  .val(data.username);
-                  $(form).append($(acUsername));
-
-                  form.appendTo( document.body );
-                  $(form).submit();
+                  redirect(data.username);
                }
             });
          });
       });
+
+      function redirect(name) {
+         var f = document.createElement('form');
+         f.action='/dashboard';
+         f.method='POST';
+
+         var i=document.createElement('input');
+         i.type='hidden';
+         i.name='username';
+         i.value= name;
+         f.appendChild(i);
+
+         document.body.appendChild(f);
+         f.submit();
+      }
+
       function create() {
          let fname = document.getElementById('fname').value;
          if (fname == '') {
