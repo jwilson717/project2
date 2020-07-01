@@ -28,7 +28,9 @@ CREATE TABLE movies (
    , title VARCHAR(75) NOT NULL 
    , rating_id INT NOT NULL 
    , description VARCHAR(255) 
+   , account_id INT NOT NULL
    , FOREIGN KEY (rating_id) REFERENCES rating(rating_id) 
+   , FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
 
 CREATE TABLE genres (
@@ -41,3 +43,23 @@ CREATE TABLE movie_has_genre (
    , movie_id INT NOT NULL 
    , genre_id INT NOT NULL
 );
+
+INSERT INTO rating 
+(rating)
+VALUES
+('G');
+
+INSERT INTO rating 
+(rating)
+VALUES
+('PG');
+
+INSERT INTO rating 
+(rating)
+VALUES
+('PG-13');
+
+INSERT INTO rating 
+(rating)
+VALUES
+('R');
