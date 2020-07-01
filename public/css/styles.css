@@ -9,3 +9,7 @@
 body {
    background-color: lightblue;
 }
+
+.hide {
+   display: none;
+}

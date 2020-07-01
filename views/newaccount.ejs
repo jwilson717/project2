@@ -69,12 +69,11 @@
          
             let info = {fname: fname, lname: lname, email: email, username: username, password: password};
             $.post('/newaccount', info, function (data) {
-               console.log(data);
                let res = JSON.parse(data);
-               console.log(res);
                if (data.status == 'Error') {
                   $('#error').html(data.message);
                } else if (data.status == 'Success') {
+                  console.log('redirect');
                   redirect(data.username);
                }
             });
@@ -87,7 +86,7 @@
          f.method='POST';
 
          var i=document.createElement('input');
-         i.type='hidden';
+         i.type='text';
          i.name='username';
          i.value= name;
          f.appendChild(i);
