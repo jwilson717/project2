@@ -28,7 +28,7 @@
    <script>
       $(document).ready(function () {
          $('#searchbtn').click(function () {
-            let info = JSON.stringify(('#searchform').serialize());
+            let info = JSON.stringify($('#searchform').serialize());
             console.log(info);
             $.post('/search', info, function (data){
                $('#results').html(data);
