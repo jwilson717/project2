@@ -73,8 +73,7 @@
                if (res.status == 'Error') {
                   $('#error').html(data.message);
                } else if (res.status == 'Success') {
-                  console.log(data.username);
-                  redirect(data.username);
+                  redirect(res.username);
                }
             });
          });
@@ -93,7 +92,7 @@
          f.appendChild(i);
 
          document.body.appendChild(f);
-         // f.submit();
+         f.submit();
       }
 
       function create() {
