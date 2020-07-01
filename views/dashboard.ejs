@@ -13,7 +13,7 @@
       <p class='ml-3'>Welcome <%= body.username%></p>
    </div>
    <main class='container'>
-      <form>
+      <form id='searchform'>
          <div class='row'>
             <div class='form-group input-group m-2'>
                <input type="text" name="search" id="search" class='form-control' placeholder="Search">
@@ -23,5 +23,15 @@
          <div id='results'></div>
       </form>
    </main>
+   <script src='jquery-3.5.1.min.js'></script>
+   <script>
+      $(document).ready(function () {
+         $('#searchbtn').click(function () {
+            $.post('/search', $('#searchform').serialize(), function (data){
+               $('#results').html(data);
+            });
+         });
+      });
+   </script>
 </body>
 </html>
