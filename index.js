@@ -56,5 +56,9 @@ app.post('/search', function (req, res) {
    });
 });
 
+app.get('/login', function (req, res){
+   res.render('login');
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
