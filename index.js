@@ -49,6 +49,7 @@ app.post('/search', function (req, res) {
             console.log(err.stack);
             res.send('Error');
          } else {
+            console.log(response);
             res.send(response.rows);
          }
       });
