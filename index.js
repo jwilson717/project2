@@ -47,6 +47,7 @@ app.post('/search', function (req, res) {
          done();
          if (err) {
             console.log(err.stack);
+            res.send('Error');
          } else {
             res.send(response);
          }
