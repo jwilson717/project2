@@ -32,6 +32,7 @@
             let name ='<%= body.username %>';
             let info = {username: name, search: searchstr};
             $.post('/search', info, function (data){
+               console.log(data);
                $('#results').html('Response: ' + data);
             });
          });
