@@ -33,7 +33,6 @@
             let info = {username: name, search: searchstr};
             console.log(info);
             $.post('/search', info, function (data){
-               console.log(data);
                $('#results').html(data);
             });
          });
