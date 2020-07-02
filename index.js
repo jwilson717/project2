@@ -45,7 +45,11 @@ app.post('/search', function (req, res) {
       if(err) throw err;
       client.query("SELECT DISTINCT m.title, r.rating, m.description FROM movies m INNER JOIN rating r ON m.rating_id = r.rating_id LEFT JOIN movie_has_genre mg ON m.movie_id = mg.movie_id LEFT JOIN genres g ON g.genre_id = mg.genre_id INNER JOIN accounts a ON m.account_id = m.account_id WHERE a.username = $1 AND (m.title LIKE '%$2%' OR g.genre LIKE '%$2%' m.description LIKE '%$2%')", [req.body.username, req.body.search], function (err, response){
          done();
-         res.send(response.rows);
+         if (err) {
+            console.log(err.stack);
+         } else {
+            res.send(response);
+         }
       });
    });
 });
