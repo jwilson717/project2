@@ -43,7 +43,7 @@ app.post('/dashboard', function (req, res) {
 app.post('/search', function (req, res) {
    pool.connect(function (err, client, done) {
       if(err) throw err;
-      client.query("SELECT DISTINCT m.title, r.rating, m.description FROM movies m INNER JOIN rating r ON m.rating_id = r.rating_id LEFT JOIN movie_has_genre mg ON m.movie_id = mg.movie_id LEFT JOIN genres g ON g.genre_id = mg.genre_id INNER JOIN accounts a ON a.account_id = m.account_id WHERE a.username = $1 AND (UPPER(m.title) LIKE UPPER($2) OR UPPER(g.genre) LIKE UPPER($2) OR UPPER(m.description) LIKE UPPER($2))", [req.body.username, '%' + req.body.search + '%'], function (err, response){
+      client.query("SELECT DISTINCT m.title, r.rating, m.description FROM movies m INNER JOIN rating r ON m.rating_id = r.rating_id LEFT JOIN movie_has_genre mg ON m.movie_id = mg.movie_id LEFT JOIN genres g ON g.genre_id = mg.genre_id INNER JOIN accounts a ON a.account_id = m.account_id WHERE a.username = $1 AND (UPPER(m.title) LIKE UPPER($2) OR UPPER(g.genre) LIKE UPPER($2) OR UPPER(m.description) LIKE UPPER($2))", ['Test', '%' + req.body.search + '%'], function (err, response){
          done();
          if (err) {
             console.log(err.stack);
