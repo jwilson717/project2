@@ -50,7 +50,7 @@ app.post('/search', function (req, res) {
             res.send('Error');
          } else {
             console.log(response);
-            res.send(response.rows);
+            res.send(JSON.stringify(response.rows));
          }
       });
    });
