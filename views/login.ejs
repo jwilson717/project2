@@ -34,7 +34,7 @@
             $.post('/login', $('#loginform').serialize(), function (data) {
                let res = JSON.parse(data);
                console.log(res);
-               $('#error').html(res.password);
+               $('#error').html(res[0].password);
             });
          });
       });
