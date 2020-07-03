@@ -33,11 +33,30 @@
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
                let res = JSON.parse(data);
-               console.log(res);
-               $('#error').html(res.msg);
+               if (res.status == 'Success') {
+                  redirect($('#username').val())
+               } else {
+                  $('#error').html(res.msg);
+               }
             });
          });
       });
+
+      function redirect(name) {
+         console.log(name);
+         var f = document.createElement('form');
+         f.action='/dashboard';
+         f.method='POST';
+
+         var i=document.createElement('input');
+         i.type='text';
+         i.name='username';
+         i.value= name;
+         f.appendChild(i);
+
+         document.body.appendChild(f);
+         f.submit();
+      }
    </script>
 </body>
 </html>

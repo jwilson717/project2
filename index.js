@@ -80,16 +80,11 @@ app.post('/login', function (req, res){
                console.log(results.password);
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
-                     res.redirect(301, '/dashboard');
+                     res.send(JSON.stringify({status: 'Success', msg: 'Login Succeeded'}));
                   } else {
                      res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
                   }
                });
-               // if(hash == results.password) {
-               //    res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
-               // } else {
-               //    res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
-               // }  
             }
          });
       });
