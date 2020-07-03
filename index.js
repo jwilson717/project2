@@ -82,7 +82,7 @@ app.post('/login', function (req, res){
                   if (auth == true) {
                      res.send(JSON.stringify({status: 'Success', msg: 'Login Succeeded'}));
                   } else {
-                     res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+                     res.send(JSON.stringify({status: 'Error', msg: 'Incorrect Username or Password'}));
                   }
                });
             }
