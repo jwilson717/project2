@@ -61,6 +61,7 @@ app.get('/login', function (req, res){
 });
 
 app.post('/login', function (req, res){
+   console.log(req.body);
    bcrypt.hash(req.body.password, 10, (err, hash)=> {
       if (err) {
          console.log(err);
