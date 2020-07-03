@@ -70,18 +70,18 @@ app.post('/login', function (req, res){
          if(err) throw err;
          client.query("SELECT password FROM accounts WHERE username = $1", [req.body.username], function (err, response){
             done();
-            res.send(JSON.stringify(response.rows));
-            // if (err) {
-            //    console.log(err.stack);
-            //    res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
-            // } else {
-            //    let results = JSON.parse(response);
-            //    if(hash == results.password) {
-            //       res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
-            //    } else {
-            //       res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
-            //    }  
-            // }
+            // res.send(JSON.stringify(response.rows));
+            if (err) {
+               console.log(err.stack);
+               res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+            } else {
+               let results = response.rows[0];
+               if(hash == results.password) {
+                  res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
+               } else {
+                  res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+               }  
+            }
          });
       });
    });
