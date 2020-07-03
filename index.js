@@ -75,13 +75,13 @@ app.post('/login', function (req, res){
                console.log(err.stack);
                res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
             } else {
-               results = JSON.parse(response.rows);
+               results = JSON.parse(response);
                if(hash == results.password) {
                   res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
                } else {
-                  res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
-               }
-               
+                  // res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+                  res.send(response);
+               }  
             }
          });
       });
