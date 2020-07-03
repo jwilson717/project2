@@ -61,17 +61,28 @@ app.get('/login', function (req, res){
 });
 
 app.post('/login', function (req, res){
-   pool.connect(function (err, client, done) {
-      if(err) throw err;
-      client.query("SELECT password FROM accounts WHERE username = $1", [req.body.username], function (err, response){
-         done();
-         if (err) {
-            console.log(err.stack);
-            res.send('Error Logging In');
-         } else {
-            console.log(response);
-            res.send(JSON.stringify(response.rows));
-         }
+   bcrypt.hash(req.body.password, 10, (err, hash)=> {
+      if (err) {
+         console.log(err);
+         return;
+      }
+      pool.connect(function (err, client, done) {
+         if(err) throw err;
+         client.query("SELECT password FROM accounts WHERE username = $1", [req.body.username], function (err, response){
+            done();
+            if (err) {
+               console.log(err.stack);
+               res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+            } else {
+               results = JSON.parse(response.rows[0]);
+               if(hash == results.password) {
+                  res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
+               } else {
+                  res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+               }
+               
+            }
+         });
       });
    });
 });
