@@ -74,7 +74,7 @@ app.post('/login', function (req, res){
                console.log(err.stack);
                res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
             } else {
-               // let results = JSON.parse(response);
+               let results = JSON.parse(response);
                if(hash == results.password) {
                   res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
                } else {
