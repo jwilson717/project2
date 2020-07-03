@@ -61,7 +61,6 @@ app.get('/login', function (req, res){
 });
 
 app.post('/login', function (req, res){
-   console.log(req.body);
    bcrypt.hash(req.body.password, 10, (err, hash)=> {
       if (err) {
          console.log(err);
@@ -75,7 +74,7 @@ app.post('/login', function (req, res){
                console.log(err.stack);
                res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
             } else {
-               results = JSON.parse(response);
+               // let results = JSON.parse(response);
                if(hash == results.password) {
                   res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
                } else {
