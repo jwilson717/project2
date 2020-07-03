@@ -33,7 +33,7 @@
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
                let res = JSON.parse(data);
-               console.log(res.password);
+               console.log(res);
                $('#error').html(res.password);
             });
          });
