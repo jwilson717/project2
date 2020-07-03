@@ -80,7 +80,7 @@ app.post('/login', function (req, res){
                console.log(results.password);
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
-                     res.redirect('/dashboard', {body: results.password});
+                     res.render('/dashboard', {body: results.password});
                   } else {
                      res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
                   }
