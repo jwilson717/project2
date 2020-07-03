@@ -71,7 +71,7 @@
             $.post('/newaccount', info, function (data) {
                let res = JSON.parse(data);
                if (res.status == 'Error') {
-                  $('#error').html(data.message);
+                  $('#error').html(res.message);
                } else if (res.status == 'Success') {
                   redirect(res.username);
                }
