@@ -78,11 +78,18 @@ app.post('/login', function (req, res){
                let results = response.rows[0];
                console.log(hash);
                console.log(results.password);
-               if(hash == results.password) {
-                  res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
-               } else {
-                  res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
-               }  
+               bcrypt.compare(req.body.password, results.password, function (err, auth) {
+                  if (auth == true) {
+                     res.redirect('/dashboard');
+                  } else {
+                     res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+                  }
+               });
+               // if(hash == results.password) {
+               //    res.send(JSON.stringify({status: 'Success', msg: 'Login Succeded'}));
+               // } else {
+               //    res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+               // }  
             }
          });
       });
