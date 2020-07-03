@@ -33,10 +33,19 @@
             let info = {username: name, search: searchstr};
             $.post('/search', info, function (data){
                let res = JSON.parse(data);
-               console.log(res);
+               let out = '';
+               res.array.forEach(element => {
+                  out += display(element);
+               });
+               $('#results').html(out);
             });
          });
       });
+
+      function display(movie) {
+         let out = "<div><p>" + movie.title + " " + movie.description + "</p></div>";
+         return out;
+      }
    </script>
 </body>
 </html>
