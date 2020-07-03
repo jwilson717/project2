@@ -6,6 +6,7 @@
    <title>Dashboard</title>
    <link rel="stylesheet" type='text/css' href="/css/bootstrap.css">
    <link rel="stylesheet" type='text/css' href="/css/styles.css">
+   <link rel="stylesheet" type='text/css' href="/css/dashboardStyles.css">
 </head>
 <body>
    <div id='header' class='shadow-sm p-3'>
@@ -43,7 +44,8 @@
       });
 
       function display(movie) {
-         let out = "<div class='border border-dark rounded shadow mt-2 p-2'><p>" + movie.title + "</p><p class='ml-2'> " + movie.description + "</p></div>";
+         let out = "<div class='border border-dark rounded shadow mt-2 p-2 result'><p>" 
+            + movie.title + "</p><p class='ml-2'> " + movie.description + "</p></div>";
          return out;
       }
    </script>
