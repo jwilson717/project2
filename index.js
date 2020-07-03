@@ -60,5 +60,21 @@ app.get('/login', function (req, res){
    res.render('login');
 });
 
+app.post('/login', function (req, res){
+   pool.connect(function (err, client, done) {
+      if(err) throw err;
+      client.query("SELECT password FROM accounts WHERE username = $1", [req.body.username], function (err, response){
+         done();
+         if (err) {
+            console.log(err.stack);
+            res.send('Error Logging In');
+         } else {
+            console.log(response);
+            res.send(JSON.stringify(response.rows));
+         }
+      });
+   });
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
