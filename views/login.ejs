@@ -32,8 +32,8 @@
       $(document).ready(function () {
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
-               // let res = JSON.parse(data);
-               $('#error').html(data.rows.password);
+               let res = JSON.parse(data);
+               $('#error').html(res.password);
             });
          });
       });
