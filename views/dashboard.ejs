@@ -34,7 +34,7 @@
             $.post('/search', info, function (data){
                let res = JSON.parse(data);
                let out = '';
-               res.array.forEach(element => {
+               res.forEach(element => {
                   out += display(element);
                });
                $('#results').html(out);
