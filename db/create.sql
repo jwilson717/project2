@@ -1,4 +1,4 @@
--- DELETE FROM accounts;
+DELETE FROM accounts;
 DELETE FROM rating;
 DELETE FROM movies;
 DELETE FROM genres;
@@ -7,16 +7,16 @@ DROP TABLE movie_has_genre;
 DROP TABLE genres;
 DROP TABLE movies;
 DROP TABLE rating;
--- DROP TABLE accounts;
+DROP TABLE accounts;
 
--- CREATE TABLE accounts (
---    account_id SERIAL PRIMARY KEY
---    , fname VARCHAR(45) NOT NULL 
---    , lname VARCHAR(45) NOT NULL 
---    , email VARCHAR(75) NOT NULL 
---    , username VARCHAR(45) NOT NULL 
---    , password VARCHAR(60) NOT NULL
--- ); 
+CREATE TABLE accounts (
+   account_id SERIAL PRIMARY KEY
+   , fname VARCHAR(45) NOT NULL 
+   , lname VARCHAR(45) NOT NULL 
+   , email VARCHAR(75) NOT NULL 
+   , username VARCHAR(45) NOT NULL 
+   , password VARCHAR(60) NOT NULL
+); 
 
 CREATE TABLE rating (
    rating_id SERIAL PRIMARY KEY 
