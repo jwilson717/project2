@@ -69,11 +69,11 @@
          
             let info = {fname: fname, lname: lname, email: email, username: username, password: password};
             $.post('/newaccount', info, function (data) {
-               let res = JSON.parse(data);
-               if (res.status == 'Error') {
+               if (!data.success) {
                   $('#error').html(res.message);
-               } else if (res.status == 'Success') {
-                  redirect(res.username);
+               } else if (data.success) {
+                  // redirect(res.username);
+                  window.location.replace("/dashboard");
                }
             });
          });
@@ -95,51 +95,6 @@
          f.submit();
       }
 
-      function create() {
-         let fname = document.getElementById('fname').value;
-         if (fname == '') {
-            document.getElementById('error').innerHTML = 'First Name is Required';
-            return;
-         }
-         let lname = document.getElementById('lname').value;
-         if (lname == '') {
-            document.getElementById('error').innerHTML = 'Last Name is Required';
-            return;
-         }
-         let email = document.getElementById('email').value;
-         if (email == '') {
-            document.getElementById('error').innerHTML = 'Please Provide an Email';
-            return;
-         }
-         let username = document.getElementById('username').value;
-         if (username == '') {
-            document.getElementById('error').innerHTML = 'Please Provide a Username';
-            return;
-         }
-         
-         let password = document.getElementById('password').value;
-         if (password == '') {
-            document.getElementById('error').innerHTML = 'Please Provide a Password';
-            return;
-         }
-      
-         let data = {fname: fname, lname: lname, email: email, username: username, password: password};
-
-         let ajax = new XMLHttpRequest();
-         ajax.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-               let data = this.responseText;
-               if (!data.success) {
-                  document.getElementById('error').innerHTML = data.message;
-               } else if (data.success) {
-                  window.location.replace("/dashboard");
-               }
-            }
-         };
-         ajax.open('POST', '/newaccount', true);
-         ajax.setRequestHeader('Content-Type', 'application/json');
-         ajax.send(JSON.stringify(data));
-      }
    </script>
 </body>
 </html>
