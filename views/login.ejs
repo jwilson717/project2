@@ -32,9 +32,9 @@
       $(document).ready(function () {
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
-               let res = JSON.parse(data);
+               // let res = JSON.parse(data);
                console.log(res);
-               if (res.success) {
+               if (data.success) {
                   redirect($('#username').val())
                } else {
                   $('#error').html(res.msg);
