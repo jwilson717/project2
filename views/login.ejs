@@ -35,7 +35,8 @@
                // let res = JSON.parse(data);
                // console.log(res);
                if (data.success) {
-                  redirect($('#username').val())
+                  // redirect($('#username').val())
+                  window.location.replace("/dashboard");
                } else {
                   $('#error').html(data.msg);
                }

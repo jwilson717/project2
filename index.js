@@ -33,17 +33,23 @@ app.post('/newaccount', function (req, res) {
          client.query('INSERT INTO accounts (fname, lname, email, username, password) VALUES ($1, $2, $3, $4, $5)', [req.body.fname, req.body.lname, req.body.email, req.body.username, hash], function (err, response) {
             done();
             if(err) {
-              res.send(JSON.stringify({status: 'Error', message: 'Error Creating Account'}));
+              result = {success: false, message: 'Error Creating Account'};
             } else {
-               res.send(JSON.stringify({status: 'Success', message: 'dashboard', username: req.body.username}));
+               result = {success: true, message: 'dashboard'};
+               req.session.username = req.body.username;
             }
+            res.json(result);
          });
       });
    });
 });
 
-app.post('/dashboard', function (req, res) {
-   res.render('dashboard', {body: req.body});
+app.get('/dashboard', function (req, res) {
+   if (req.session.username) {
+      res.render('dashboard', {body: req.session.username});
+   } else {
+      res.render('login');
+   }
 });
 
 app.post('/search', function (req, res) {
@@ -53,7 +59,7 @@ app.post('/search', function (req, res) {
          done();
          if (err) {
             console.log(err.stack);
-            res.send('Error');
+            res.send('Error Occured');
          } else {
             console.log(response);
             res.send(JSON.stringify(response.rows));
