@@ -128,10 +128,10 @@
          let ajax = new XMLHttpRequest();
          ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-               let data = JSON.parse(this.responseText);
-               if (data.status == 'Error') {
+               let data = this.responseText;
+               if (!data.success) {
                   document.getElementById('error').innerHTML = data.message;
-               } else if (data.status == 'Success') {
+               } else if (data.success) {
                   window.location.replace("/dashboard");
                }
             }
