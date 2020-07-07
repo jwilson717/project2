@@ -83,10 +83,12 @@ app.post('/login', function (req, res){
                let results = response.rows[0];
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
-                     res.json({success: true, msg: 'Login Succeeded'});
+                     result = {success: true, msg: 'Login Succeeded'};
+                     req.session.username = req.body.username;
                   } else {
-                     res.json({success: false, msg: 'Incorrect Username or Password'});
+                     result = {success: false, msg: 'Incorrect Username or Password'};
                   }
+                  res.json(result);
                });
             }
          });
