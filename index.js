@@ -4,9 +4,15 @@ const PORT = process.env.PORT || 8080;
 const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
 const pool = new Pool({connectionString: process.env.DATABASE_URL});
+var session = require('express-session');
 
 var app = express();
 
+app.use(session({
+   secret: 'secret-secrets'
+   , resave: false
+   , saveUninitialized: true
+}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true }));
@@ -70,19 +76,16 @@ app.post('/login', function (req, res){
          if(err) throw err;
          client.query("SELECT password FROM accounts WHERE username = $1", [req.body.username], function (err, response){
             done();
-            // res.send(JSON.stringify(response.rows));
             if (err) {
                console.log(err.stack);
-               res.send(JSON.stringify({status: 'Error', msg: 'Error Logging In'}));
+               res.json({status: 'Error', msg: 'Error Logging In'});
             } else {
                let results = response.rows[0];
-               console.log(hash);
-               console.log(results.password);
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
-                     res.send(JSON.stringify({status: 'Success', msg: 'Login Succeeded'}));
+                     res.json({status: 'Success', msg: 'Login Succeeded'});
                   } else {
-                     res.send(JSON.stringify({status: 'Error', msg: 'Incorrect Username or Password'}));
+                     res.json({status: 'Error', msg: 'Incorrect Username or Password'});
                   }
                });
             }
