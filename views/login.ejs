@@ -33,7 +33,8 @@
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
                let res = JSON.parse(data);
-               if (res.status == 'Success') {
+               console.log(res);
+               if (res.success) {
                   redirect($('#username').val())
                } else {
                   $('#error').html(res.msg);

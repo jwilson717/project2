@@ -83,9 +83,9 @@ app.post('/login', function (req, res){
                let results = response.rows[0];
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
-                     res.json({status: 'Success', msg: 'Login Succeeded'});
+                     res.json({success: true, msg: 'Login Succeeded'});
                   } else {
-                     res.json({status: 'Error', msg: 'Incorrect Username or Password'});
+                     res.json({success: false, msg: 'Incorrect Username or Password'});
                   }
                });
             }
