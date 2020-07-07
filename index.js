@@ -90,6 +90,7 @@ app.post('/login', function (req, res){
                   let results = response.rows[0];
                } else {
                   res.json({success: false, msg: 'Incorrect Username'});
+                  return;
                }
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
