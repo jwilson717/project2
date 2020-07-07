@@ -30,7 +30,7 @@
       $(document).ready(function () {
          $('#searchbtn').click(function () {
             let searchstr = $('#search').val();
-            let name ='<%= body.username %>';
+            let name ='<%= user %>';
             let info = {username: name, search: searchstr};
             $.post('/search', info, function (data){
                let res = JSON.parse(data);
