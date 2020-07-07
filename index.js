@@ -46,7 +46,7 @@ app.post('/newaccount', function (req, res) {
 
 app.get('/dashboard', function (req, res) {
    if (req.session.username) {
-      res.render('dashboard', {body: req.session.username});
+      res.render('dashboard', {user: req.session.username});
    } else {
       res.render('login');
    }
