@@ -12,7 +12,7 @@
    <div id='header' class='shadow-sm p-3'>
       <h1>Movie Catalog</h1>
       <p class='ml-3'>Welcome <%= user%></p>
-      <button type='button' class="btn btn-primary" data-toggle='modal' data-target='#newMovie'>Add Movie</button>
+      <button type='button' class="btn btn-primary float-right" data-toggle='modal' data-target='#newMovie'>Add Movie</button>
    </div>
    <main class='container'>
       <form id='searchform'>
@@ -25,7 +25,7 @@
          </div>
       </form>
       <div id='results'></div>
-      <div class='modal fade' id='newMovie' role='dialog' aria-labelledby="newMovieTitle" aria-hidden="true" tabindex='-1'>
+      <div class='modal fade show' id='newMovie' role='dialog' aria-labelledby="newMovieTitle" aria-hidden="true" tabindex='-1'>
          <div class='modal-dialogue modal-dialogue-centered' role='document'>
             <div class='modal-content'>
                <div class='modal-header'>
