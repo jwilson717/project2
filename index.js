@@ -86,13 +86,17 @@ app.post('/login', function (req, res){
                console.log(err.stack);
                res.json({status: 'Error', msg: 'Error Logging In'});
             } else {
-               let results = response.rows[0];
+               if (response.rows[0]) {
+                  let results = response.rows[0];
+               } else {
+                  res.json({success: false, msg: 'Incorrect Username'});
+               }
                bcrypt.compare(req.body.password, results.password, function (err, auth) {
                   if (auth == true) {
                      result = {success: true, msg: 'Login Succeeded'};
                      req.session.username = req.body.username;
                   } else {
-                     result = {success: false, msg: 'Incorrect Username or Password'};
+                     result = {success: false, msg: 'Incorrect Password'};
                   }
                   res.json(result);
                });
