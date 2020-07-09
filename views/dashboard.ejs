@@ -45,13 +45,21 @@
                      <div class='form-group input-group'>
                         <input type="text" name="description" id="description" class='form-control' placeholder="Description" required>
                      </div>  
-                     <h2>Genres:</h2>
+                     <h4>Genres:</h4>
                      <% genres.forEach((item) => {%>
                         <div class='form-check form-check-inline'>
                            <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" name='<%= item.genre%>' class='form-check-input'>
                            <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
                         </div>
                      <% });%>
+                     <h4>Rating</h4>
+                     <select name="rating" id="rating">
+                        <option value="select">--Select--</option>
+                        <option value="G">G</option>
+                        <option value="PG">PG</option>
+                        <option value="PG-13">PG-13</option>
+                        <option value="R">R</option>
+                     </select>
                   </form>
                </div>
                <div class="modal-footer">

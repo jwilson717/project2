@@ -30,6 +30,7 @@
    <script src='jquery-3.5.1.min.js'></script>
    <script>
       $(document).ready(function () {
+         $('#username').focus();
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
                // let res = JSON.parse(data);
