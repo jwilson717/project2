@@ -136,8 +136,39 @@ function movieInsert(details) {
          if (err) {
             res.json({success: false, msg: 'Error adding movie'});
          } else {
-            res.json({success: true});
+            if(req.body.genres) {
+               req.body.genres.forEach(genre => {
+                  client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES (currval('movies_movie_id_seq'), (SELECT genre_id FROM genres WHERE genre = $1))", [genre], function (err, result) {
+                     if (err) {
+                        res.json({success: false, msg: 'Genres not correctly added'});
+                     } else {
+                        res.json({success: true, msg: 'Movie added successfully!'});
+                     }
+                  });
+               });
+               done();
+            } else {
+               done();
+               res.json({success: true, msg: 'Movie added successfully!'});
+            }
          }
       });
    });
+}
+
+function genresInsert(genres) {
+   pool.connect(function (err, client, done) {
+      if (err) {
+         console.log(err.stack);
+      }
+
+      client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES (currval('movies_movie_id_seq'), (SELECT genre_id FROM genres WHERE genre = $1))", [genre], function (err, result) {
+         if (err) {
+            res.json({success: false, msg: 'Genres not correctly added'});
+         } else {
+            res.json({success: true, msg: 'Movie added successfully!'});
+         }
+      });
+      
+   })
 }
