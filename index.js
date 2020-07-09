@@ -119,5 +119,8 @@ app.post('/login', function (req, res){
    });
 });
 
+app.post('/addMovie', function(req, res) {
+   
+});
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
