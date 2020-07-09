@@ -45,6 +45,7 @@ CREATE TABLE movie_has_genre (
    , genre_id INT NOT NULL
 );
 
+-- Rating -- 
 INSERT INTO rating 
 (rating)
 VALUES
@@ -64,3 +65,30 @@ INSERT INTO rating
 (rating)
 VALUES
 ('R');
+
+
+-- Genres --
+INSERT INTO genres
+(genre)
+VALUES
+('Action');
+
+INSERT INTO genres
+(genre)
+VALUES
+('Drama');
+
+INSERT INTO genres
+(genre)
+VALUES
+('Comedy');
+
+INSERT INTO genres
+(genre)
+VALUES
+('Romance');
+
+INSERT INTO genres
+(genre)
+VALUES
+('Horror');

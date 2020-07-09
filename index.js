@@ -46,7 +46,8 @@ app.post('/newaccount', function (req, res) {
 
 app.get('/dashboard', function (req, res) {
    if (req.session.username) {
-      res.render('dashboard', {user: req.session.username});
+      let genres = getGenres();
+      res.render('dashboard', {user: req.session.username, genres: genres});
    } else {
       res.render('login');
    }
@@ -106,3 +107,23 @@ app.post('/login', function (req, res){
 
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
+
+function getGenres() {
+   let result;
+   pool.connect(function (err, client, done) {
+      if (err) {
+         console.log(err.stack);
+         return;
+      } else {
+         client.query("SELECT genre FROM genres", function (err, response) {
+            done();
+            if (err) {
+               return;
+            } else {
+               result =  response.rows;
+               return result;
+            }
+         });
+      }
+   });
+}
