@@ -120,7 +120,7 @@ app.post('/login', function (req, res){
 });
 
 app.post('/addMovie', function(req, res) {
-   
+   console.log(req.body);
 });
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);

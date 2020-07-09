@@ -5,3 +5,7 @@
 .modal-content {
    background-color: lightblue;
 }
+
+#error {
+   color: red;
+}

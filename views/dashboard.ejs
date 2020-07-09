@@ -36,6 +36,7 @@
                </div>
                <div class='modal-body'>
                   <form id='newMovieForm'>
+                     <div id='error'></div>
                      <div class='form-group input-group'>
                         <input type="text" name="title" id="title" class='form-control' placeholder="Title" required>
                      </div>
@@ -59,6 +60,7 @@
                         <option value="PG">PG</option>
                         <option value="PG-13">PG-13</option>
                         <option value="R">R</option>
+                        <option value="NR">NR</option>
                      </select>
                   </form>
                </div>
@@ -85,6 +87,26 @@
                   out += display(element);
                });
                $('#results').html(out);
+            });
+         });
+
+         $('#save').click(function () {
+            if ($('#title').val() == '') {
+               $('#error').html('Please provide a title');
+               return;
+            } else if ($('#year').val() == '') {
+               $('#error').html('Please provide a release year');
+               return;
+            } else if ($('#rating').val() == '--Select--') {
+               $('#error').html('Please select a rating');
+               return;
+            }
+            $.post('/addMovie', $('#newMovieForm').serialize(), function (data){
+               if (data.success) {
+                  alert('Insert Successful');
+               } else {
+                  $('#error').html('Unable to add Movie');
+               }
             });
          });
       });
