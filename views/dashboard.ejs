@@ -100,6 +100,8 @@
             } else if ($('#rating').val() == 'select') {
                $('#error').html('Please select a rating');
                return;
+            } else {
+               $('#error').html('');
             }
             $.post('/addMovie', $('#newMovieForm').serialize(), function (data){
                if (data.success) {
