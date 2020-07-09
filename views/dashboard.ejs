@@ -45,7 +45,7 @@
                      <div class='form-group input-group'>
                         <input type="text" name="description" id="description" class='form-control' placeholder="Description" required>
                      </div>  
-                     <label>Genres:</label>
+                     <p>Genres:</p>
                      <% genres.forEach((item) => {%>
                         <div class='form-check form-check-inline'>
                            <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" name='<%= item.genre%>' class='form-check-input'>
@@ -53,7 +53,7 @@
                         </div>
                      <% });%>
                      <label for='rating'>Rating:</label>
-                     <select name="rating" id="rating">
+                     <select name="rating" id="rating" class='form-control'>
                         <option value="select">--Select--</option>
                         <option value="G">G</option>
                         <option value="PG">PG</option>
