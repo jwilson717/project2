@@ -121,8 +121,35 @@ app.post('/login', function (req, res){
 
 app.post('/addMovie', function(req, res) {
    console.log(req.body);
-   res.json({success: true});
+   pool.connect(function (err, client, done) {
+      if (err) {
+         console.log(err.stack);
+      }
+
+      client.query("INSERT INTO movies (title, year, rating_id, description, account_id) VALUES ($1, $2, (SELECT rating_id FROM rating WHERE rating = $3),$4, (SELECT account_id FROM accounts WHERE username = $5))", [req.body.title, req.body.year, req.body.rating, req.body.description, req.session.username], function (err, response) {
+         if (err) {
+            res.json({success: false, msg: 'Error adding movie'});
+         } else {
+            if(req.body.genres) {
+               req.body.genres.forEach(genre => {
+                  client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES (currval('movies_movie_id_seq'), (SELECT genre_id FROM genres WHERE genre = $1))", [genre], function (err, result) {
+                     if (err) {
+                        res.json({success: false, msg: 'Genres not correctly added'});
+                     } else {
+                        res.json({success: true, msg: 'Movie added successfully!'});
+                     }
+                  });
+               });
+               done();
+            } else {
+               done();
+               res.json({success: true, msg: 'Movie added successfully!'});
+            }
+         }
+      });
+   });
 });
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
 
@@ -154,21 +181,4 @@ function movieInsert(details) {
          }
       });
    });
-}
-
-function genresInsert(genres) {
-   pool.connect(function (err, client, done) {
-      if (err) {
-         console.log(err.stack);
-      }
-
-      client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES (currval('movies_movie_id_seq'), (SELECT genre_id FROM genres WHERE genre = $1))", [genre], function (err, result) {
-         if (err) {
-            res.json({success: false, msg: 'Genres not correctly added'});
-         } else {
-            res.json({success: true, msg: 'Movie added successfully!'});
-         }
-      });
-      
-   })
 }
