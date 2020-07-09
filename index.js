@@ -46,8 +46,22 @@ app.post('/newaccount', function (req, res) {
 
 app.get('/dashboard', function (req, res) {
    if (req.session.username) {
-      let genres = getGenres();
-      res.render('dashboard', {user: req.session.username, genres: genres});
+      pool.connect(function (err, client, done) {
+         if (err) {
+            console.log(err.stack);
+            return;
+         } else {
+            client.query("SELECT genre FROM genres", function (err, response) {
+               done();
+               if (err) {
+                  res.render('dashboard', {user: req.session.username, genres: ''});
+               } else {
+                  result =  response.rows;
+                  res.render('dashboard', {user: req.session.username, genres: result});
+               }
+            });
+         }
+      });
    } else {
       res.render('login');
    }
@@ -105,10 +119,12 @@ app.post('/login', function (req, res){
    });
 });
 
+app.post('/genres', getGenres);
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
 
-function getGenres() {
+function getGenres(req, res) {
    let result;
    pool.connect(function (err, client, done) {
       if (err) {
@@ -121,7 +137,7 @@ function getGenres() {
                return 'none';
             } else {
                result =  response.rows;
-               return result;
+               res.json(result);
             }
          });
       }
