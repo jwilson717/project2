@@ -118,7 +118,7 @@ function getGenres() {
          client.query("SELECT genre FROM genres", function (err, response) {
             done();
             if (err) {
-               return;
+               return '';
             } else {
                result =  response.rows;
                return result;
