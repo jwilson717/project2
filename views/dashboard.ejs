@@ -48,8 +48,12 @@
                      </div>  
                      <p>Genres:</p>
                      <% genres.forEach((item) => {%>
+                        <!-- <div class='form-check form-check-inline'>
+                           <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" class='form-check-input'>
+                           <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
+                        </div> -->
                         <div class='form-check form-check-inline'>
-                           <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" name='<%= item.genre%>' class='form-check-input'>
+                           <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" value='<%= item.genre%>' class='form-check-input'>
                            <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
                         </div>
                      <% });%>
@@ -102,14 +106,14 @@
                return;
             } else {
                $('#error').html('');
-            }
-            $.post('/addMovie', $('#newMovieForm').serialize(), function (data){
+               $.post('/addMovie', $('#newMovieForm').serialize(), function (data){
                if (data.success) {
                   alert('Insert Successful');
                } else {
                   $('#error').html('Unable to add Movie');
                }
             });
+            }
          });
       });
 

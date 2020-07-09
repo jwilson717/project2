@@ -125,3 +125,19 @@ app.post('/addMovie', function(req, res) {
 });
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
+
+function movieInsert(details) {
+   pool.connect(function (err, client, done) {
+      if (err) {
+         console.log(err.stack);
+      }
+
+      client.query("INSERT INTO movies (title, year, rating_id, description, account_id) VALUES ($1, $2, (SELECT rating_id FROM rating WHERE rating = $3),$4, (SELECT account_id FROM accounts WHERE username = $5))", [req.body.title, req.body.year, req.body.rating, req.body.description, req.session.username], function (err, response) {
+         if (err) {
+            res.json({success: false, msg: 'Error adding movie'});
+         } else {
+            res.json({success: true});
+         }
+      });
+   });
+}
