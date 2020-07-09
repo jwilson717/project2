@@ -119,27 +119,5 @@ app.post('/login', function (req, res){
    });
 });
 
-app.post('/genres', getGenres);
-
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
-
-function getGenres(req, res) {
-   let result;
-   pool.connect(function (err, client, done) {
-      if (err) {
-         console.log(err.stack);
-         return;
-      } else {
-         client.query("SELECT genre FROM genres", function (err, response) {
-            done();
-            if (err) {
-               return 'none';
-            } else {
-               result =  response.rows;
-               res.json(result);
-            }
-         });
-      }
-   });
-}
