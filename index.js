@@ -121,6 +121,7 @@ app.post('/login', function (req, res){
 
 app.post('/addMovie', function(req, res) {
    console.log(req.body);
+   res.json({success: true});
 });
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
