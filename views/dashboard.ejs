@@ -94,7 +94,7 @@
             if ($('#title').val() == '') {
                $('#error').html('Please provide a title');
                return;
-            } else if ($('#year').val() == '') {
+            } else if ($('#year').val() == '' || /^\d{4}$/.test($('#year').val())) {
                $('#error').html('Please provide a release year');
                return;
             } else if ($('#rating').val() == 'select') {
