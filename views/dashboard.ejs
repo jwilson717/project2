@@ -46,9 +46,10 @@
                         <input type="text" name="description" id="description" class='form-control' placeholder="Description" required>
                      </div>  
                      <div class='form-group input-group'>
+                        <h2>Genres:</h2>
                         <% genres.forEach((item) => {%>
-                           <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" name='<%= item.genre%>'>
-                           <label for="<%= item.genre%>"><%= item.genre%></label>
+                           <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" name='<%= item.genre%>' class='form-check-input'>
+                           <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
                         <% });%>
                      </div>                   
                   </form>
