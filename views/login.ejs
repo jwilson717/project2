@@ -33,10 +33,7 @@
          $('#username').focus();
          $('#login').click(function () {
             $.post('/login', $('#loginform').serialize(), function (data) {
-               // let res = JSON.parse(data);
-               // console.log(res);
                if (data.success) {
-                  // redirect($('#username').val())
                   window.location.replace("/dashboard");
                } else {
                   $('#error').html(data.msg);
@@ -44,22 +41,6 @@
             });
          });
       });
-
-      function redirect(name) {
-         console.log(name);
-         var f = document.createElement('form');
-         f.action='/dashboard';
-         f.method='POST';
-
-         var i=document.createElement('input');
-         i.type='text';
-         i.name='username';
-         i.value= name;
-         f.appendChild(i);
-
-         document.body.appendChild(f);
-         f.submit();
-      }
    </script>
 </body>
 </html>

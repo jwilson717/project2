@@ -66,6 +66,10 @@ INSERT INTO rating
 VALUES
 ('R');
 
+INSERT INTO rating 
+(rating)
+VALUES
+('NR');
 
 -- Genres --
 INSERT INTO genres
