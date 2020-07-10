@@ -16,7 +16,7 @@
       <h1>Movie Catalog</h1>
       <p class='ml-3'>Welcome <%= user%></p>
       <div class='text-right'>
-         <button type='button' class="btn btn-primary" data-toggle='modal' data-target='#newMovie'>Add Movie</button>
+         <button type='button' class="btn btn-primary" data-toggle='modal' data-target='#newMovie' id='addMovie'>Add Movie</button>
       </div>
    </div>
    <main class='container'>
@@ -83,6 +83,10 @@
    <script src='bootstrap.js'></script>
    <script>
       $(document).ready(function () {
+         $('#newMovie').click(function () {
+            $('#savedResults').html('');
+         });
+
          $('#searchbtn').click(function () {
             search();
          });
