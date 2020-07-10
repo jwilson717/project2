@@ -10,7 +10,7 @@
          <div class='modal-body'>
             <form>
                <div class='form-group input-group'>
-                  <label for="drating">Rating:</label>
+                  <label for="drating" class='form-text'>Rating:</label><br>
                   <p class='form-text' id='drating'></p>
                   <select name="newRating" id="newRating" class='form-control hide'>
                      <option value="select">--Select--</option>
@@ -22,11 +22,11 @@
                   </select>
                </div>
                <div class='form-group input-group'>
-                  <label for="newDescription">Description:</label>
+                  <label for="newDescription" class='form-text'>Description:</label>
                   <input type="text" name="newDescription" id="newDescription" class='form-control'>
                </div>
                <div class='form-group input-group'>
-                  <label for="genres">Genres:</label>
+                  <label for="genres" class='form-text'>Genres:</label><br>
                   <p id='genres'></p>
                   <div class='genres hide'>
                      <% genres.forEach((item) => {%>
