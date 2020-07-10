@@ -113,7 +113,7 @@
          $.post('/details', info, function (data){
             $('#movieDetailTitle').html(data[0].title);
             $('#drating').html(data[0].rating);
-            $('#newDescripton').html(data[0].description);
+            $('#newDescripton').attr('placeholder', data[0].description);
             let genreList = '';
             data.forEach((item) => {
                genreList += "<p>" + item.genre + "</p>";
