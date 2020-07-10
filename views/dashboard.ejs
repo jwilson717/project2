@@ -116,7 +116,7 @@
             $('#newDescripton').attr('placeholder', data[0].description);
             let genreList = '';
             data.forEach((item) => {
-               genreList += "<p>" + item.genre + "</p>";
+               genreList += "<li>" + item.genre + "</li>";
             });
             $('#genres').html(genreList);
          });
