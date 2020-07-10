@@ -112,7 +112,7 @@
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
             console.log(data);
-            $('#movieDetailTitle').html(data.title);
+            $('#movieDetailTitle').html(data[0].title);
          });
       }
    </script>
