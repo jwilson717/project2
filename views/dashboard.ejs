@@ -84,7 +84,8 @@
 
          $('.result').click(function (){
             let id = $(this).attr('id');
-            console.log(id);
+            $('#movieDetails').modal('toggle');
+            getDetails(id);
          });
 
       });
@@ -111,6 +112,13 @@
                });
                $('#results').html(out);
             });
+      }
+
+      function getDetails(id) {
+         let info = {id: id};
+         $.post('/details', info, function (data){
+            console.log(data);
+         });
       }
    </script>
 </body>

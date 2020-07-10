@@ -163,6 +163,22 @@ app.post('/logout', function (req, res) {
    }
 });
 
+app.post('/details', function (req, res) {
+   pool.connect(function (err, client, done) {
+      if(err) throw err;
+      client.query("SELECT DISTINCT m.movie_id, m.title, r.rating, m.description FROM movies m INNER JOIN rating r ON m.rating_id = r.rating_id LEFT JOIN movie_has_genre mg ON m.movie_id = mg.movie_id LEFT JOIN genres g ON g.genre_id = mg.genre_id INNER JOIN accounts a ON a.account_id = m.account_id WHERE m.movie_id = $1)", [req.body.id], function (err, response){
+         done();
+         if (err) {
+            console.log(err.stack);
+            res.send('Error Occured');
+         } else {
+            console.log(response);
+            res.send(JSON.stringify(response.rows));
+         }
+      });
+   });
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
 
