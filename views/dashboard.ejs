@@ -81,9 +81,13 @@
             search();
          });
 
+         $('#searchbtn').change(function () {
+            search();
+         });
+
          $("#search").on('input', function () {
             search();
-         })
+         });
 
          $('#save').click(function () {
             if ($('#title').val() == '') {
