@@ -86,8 +86,8 @@
             $('#newRating').removeClass('hide');
          });
 
-         $('#changeRating').click(function () {
-            $('#newRating').removeClass('hide');
+         $('#changeGenres').click(function () {
+            $('#newGenres').removeClass('hide');
          });
 
       });
@@ -117,6 +117,8 @@
       }
 
       function getDetails(id) {
+         $('#newRating').addClass('hide');
+         $('#newRating').addClass('hide');
          let info = {id: id};
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
