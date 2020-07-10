@@ -81,10 +81,6 @@
             search();
          });
 
-         $('#searchbtn').change(function () {
-            search();
-         });
-
          $("#search").on('input', function () {
             search();
          });
@@ -120,6 +116,7 @@
 
       function search() {
          if ($('#search').val() == '') {
+            $('#results').html('');
             return;
          }
          let searchstr = $('#search').val();
