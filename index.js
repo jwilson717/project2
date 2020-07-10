@@ -157,7 +157,9 @@ app.post('/addMovie', function(req, res) {
 app.post('/logout', function (req, res) {
    if(req.session.username) {
       req.session.destroy();
-      res.redirect('/');
+      res.json({success: true, msg:'Successfully logged out'});
+   } else {
+      res.json({success:false, msg: 'Error logging out'});
    }
 });
 
