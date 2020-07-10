@@ -109,6 +109,7 @@
 
       function getDetails(id) {
          let info = {id: id};
+         $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
             console.log(data);
          });
