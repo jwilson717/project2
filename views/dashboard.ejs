@@ -81,17 +81,10 @@
                }
             });
          });
-
-         $('.result').click(function (){
-            let id = $(this).attr('id');
-            $('#movieDetails').modal('toggle');
-            getDetails(id);
-         });
-
       });
 
       function display(movie) {
-         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result'><p class='font-weight-bold'>" 
+         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result' onclick='getDetails(this.id)'><p class='font-weight-bold'>" 
             + movie.title + "</p></div></button>";
          return out;
       }
