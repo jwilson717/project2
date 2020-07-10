@@ -84,7 +84,11 @@ app.post('/search', function (req, res) {
 });
 
 app.get('/login', function (req, res){
-   res.render('login');
+   if (req.session.username) {
+      res.redirect('/dashboard');
+   } else {
+      res.render('login');
+   }
 });
 
 app.post('/login', function (req, res){
@@ -148,6 +152,13 @@ app.post('/addMovie', function(req, res) {
          }
       });
    });
+});
+
+app.post('/logout', function (req, res) {
+   if(req.session.username) {
+      req.session.destroy();
+      res.redirect('/');
+   }
 });
 
 app.listen(PORT);

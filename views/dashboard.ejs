@@ -10,6 +10,9 @@
 </head>
 <body>
    <div id='header' class='shadow-sm p-3 overflow-auto'>
+      <div class='text-right'>
+         <button type='button' class='btn btn-primary btn-sm' id='logout'></button>
+      </div>
       <h1>Movie Catalog</h1>
       <p class='ml-3'>Welcome <%= user%></p>
       <button type='button' class="btn btn-primary float-right" data-toggle='modal' data-target='#newMovie'>Add Movie</button>
