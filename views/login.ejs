@@ -35,9 +35,6 @@
             if ($('#username').val() == '') {
                $('#error').html('Username Required');
                return;
-            } else if ($('#error').val() == '') {
-               $('#error').html('Password Required');
-               return;
             } else {
                $.post('/login', $('#loginform').serialize(), function (data) {
                   if (data.success) {
