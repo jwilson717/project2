@@ -48,10 +48,6 @@
                      </div>  
                      <p>Genres:</p>
                      <% genres.forEach((item) => {%>
-                        <!-- <div class='form-check form-check-inline'>
-                           <input type="checkbox" name="<%= item.genre%>" id="<%= item.genre%>" class='form-check-input'>
-                           <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
-                        </div> -->
                         <div class='form-check form-check-inline'>
                            <input type="checkbox" name="genres[]" id="<%= item.genre%>" value='<%= item.genre%>' class='form-check-input'>
                            <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
@@ -67,6 +63,7 @@
                         <option value="NR">NR</option>
                      </select>
                   </form>
+                  <div id='savedResult'></div>
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -81,18 +78,12 @@
    <script>
       $(document).ready(function () {
          $('#searchbtn').click(function () {
-            let searchstr = $('#search').val();
-            let name ='<%= user %>';
-            let info = {username: name, search: searchstr};
-            $.post('/search', info, function (data){
-               let res = JSON.parse(data);
-               let out = '';
-               res.forEach(element => {
-                  out += display(element);
-               });
-               $('#results').html(out);
-            });
+            search();
          });
+
+         $("#searchbtn").change(function () {
+            search();
+         })
 
          $('#save').click(function () {
             if ($('#title').val() == '') {
@@ -108,9 +99,9 @@
                $('#error').html('');
                $.post('/addMovie', $('#newMovieForm').serialize(), function (data){
                if (data.success) {
-                  alert('Insert Successful');
+                  $('#savedResult').html(data.msg)
                } else {
-                  $('#error').html('Unable to add Movie');
+                  $('#error').html(data.msg);
                }
             });
             }
@@ -121,6 +112,20 @@
          let out = "<div class='rounded shadow mt-2 p-2 result'><p>" 
             + movie.title + "</p><p class='ml-2'> " + movie.description + "</p></div>";
          return out;
+      }
+
+      function search() {
+         let searchstr = $('#search').val();
+            let name ='<%= user %>';
+            let info = {username: name, search: searchstr};
+            $.post('/search', info, function (data){
+               let res = JSON.parse(data);
+               let out = '';
+               res.forEach(element => {
+                  out += display(element);
+               });
+               $('#results').html(out);
+            });
       }
    </script>
 </body>
