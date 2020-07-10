@@ -85,7 +85,7 @@
       });
 
       function display(movie) {
-         let out = "<button type='button' data-toggle='modal' data-target='movieDetails' id='" + movie.movie_id + "'><div class='rounded shadow mt-2 p-2 result'><p class='font-weight-bold'>" 
+         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result'><p class='font-weight-bold'>" 
             + movie.title + "</p></div></button>";
          return out;
       }
