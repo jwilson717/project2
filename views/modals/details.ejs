@@ -10,6 +10,10 @@
          <div class='modal-body'>
             <form>
                <div class='form-group'>
+                  <label for="newRelease" class='form-text'>Release:</label>
+                  <input type="text" name="newRelease" id="newRelease" class='form-control'>
+               </div>
+               <div class='form-group'>
                   <label for="drating" class='form-text'>Rating:</label>
                   <p class='form-text ml-2' id='drating'></p>
                   <select name="newRating" id="newRating" class='form-control hide'>
@@ -20,6 +24,7 @@
                      <option value="R">R</option>
                      <option value="NR">NR</option>
                   </select>
+                  <button type='button' class='btn btn-secondary btn-sm' id='changeRating'>Change Rating</button>
                </div>
                <div class='form-group'>
                   <label for="newDescription" class='form-text'>Description:</label>
@@ -28,7 +33,7 @@
                <div class='form-group'>
                   <label for="genres" class='form-text'>Genres:</label>
                   <ul id='genres' class='ml-2 list-unstyled'></ul>
-                  <div class='genres hide'>
+                  <div class='genres hide' id='newGenres'>
                      <% genres.forEach((item) => {%>
                         <div class='form-check form-check-inline'>
                            <input type="checkbox" name="genres[]" id="<%= item.genre%>" value='<%= item.genre%>' class='form-check-input'>
@@ -36,6 +41,7 @@
                         </div>
                      <% });%>
                   </div>
+                  <button type='button' class='btn btn-secondary btn-sm' id='changeGenres'>Change Genres</button>
                </div>
             </form>
          </div>

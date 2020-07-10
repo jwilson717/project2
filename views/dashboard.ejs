@@ -81,6 +81,15 @@
                }
             });
          });
+
+         $('#changeRating').click(function () {
+            $('#newRating').removeClass('hide');
+         });
+
+         $('#changeRating').click(function () {
+            $('#newRating').removeClass('hide');
+         });
+
       });
 
       function display(movie) {
@@ -111,10 +120,10 @@
          let info = {id: id};
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
-            console.log(data[0].description);
             $('#movieDetailTitle').html(data[0].title);
             $('#drating').html(data[0].rating);
             $('#newDescription').attr('placeholder', data[0].description);
+            $('#newRelease').attr('placeholder', data[0].year);
             let genreList = '';
             data.forEach((item) => {
                genreList += "<li>" + item.genre + "</li>";
