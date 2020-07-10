@@ -111,9 +111,10 @@
          let info = {id: id};
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
+            console.log(data[0].description);
             $('#movieDetailTitle').html(data[0].title);
             $('#drating').html(data[0].rating);
-            $('#newDescripton').attr('placeholder', data[0].description);
+            $('#newDescription').attr('placeholder', data[0].description);
             let genreList = '';
             data.forEach((item) => {
                genreList += "<li>" + item.genre + "</li>";

@@ -76,7 +76,7 @@ app.post('/search', function (req, res) {
             console.log(err.stack);
             res.send('Error Occured');
          } else {
-            console.log(response);
+            // console.log(response);
             res.send(JSON.stringify(response.rows));
          }
       });
