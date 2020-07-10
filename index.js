@@ -173,7 +173,7 @@ app.post('/details', function (req, res) {
             res.send('Error Occured');
          } else {
             console.log(response);
-            res.send(JSON.stringify(response.rows));
+            res.json(response.rows);
          }
       });
    });
