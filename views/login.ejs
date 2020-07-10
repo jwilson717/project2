@@ -32,13 +32,21 @@
       $(document).ready(function () {
          $('#username').focus();
          $('#login').click(function () {
-            $.post('/login', $('#loginform').serialize(), function (data) {
-               if (data.success) {
-                  window.location.replace("/dashboard");
-               } else {
-                  $('#error').html(data.msg);
-               }
-            });
+            if ($('#username').val() == '') {
+               $('#error').html('Username Required');
+               return;
+            } else if ($('#error').val() == '') {
+               $('#error').html('Password Required');
+               return;
+            } else {
+               $.post('/login', $('#loginform').serialize(), function (data) {
+                  if (data.success) {
+                     window.location.replace("/dashboard");
+                  } else {
+                     $('#error').html(data.msg);
+                  }
+               });
+            }
          });
       });
    </script>
