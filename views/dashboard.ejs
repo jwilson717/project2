@@ -81,7 +81,7 @@
             search();
          });
 
-         $("#search").change(function () {
+         $("#search").on('input', function () {
             search();
          })
 
@@ -115,6 +115,9 @@
       }
 
       function search() {
+         if ($('#search').val() == '') {
+            return;
+         }
          let searchstr = $('#search').val();
             let name ='<%= user %>';
             let info = {username: name, search: searchstr};
