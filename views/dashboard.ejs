@@ -167,7 +167,8 @@
 
       function selectGenres() {
          $('.genreItem').each(function () {
-            console.log($(this).text());
+            let id = $(this).text();
+            $('#' + id).prop('checked', true);
          });
       }
    </script>
