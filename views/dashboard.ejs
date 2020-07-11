@@ -94,6 +94,7 @@
          $('#changeGenres').click(function () {
             if ($('#newGenres').hasClass('hide')){
                $('#newGenres').removeClass('hide');
+               selectGenres();
             } else {
                $('#newGenres').addClass('hide');
                $('.genreCheck').prop('checked', false);
@@ -158,10 +159,14 @@
             $('#newRelease').attr('placeholder', data[0].year);
             let genreList = '';
             data.forEach((item) => {
-               genreList += "<li>" + item.genre + "</li>";
+               genreList += "<li class='genreItem'>" + item.genre + "</li>";
             });
             $('#genres').html(genreList);
          });
+      }
+
+      function selectGenres() {
+         console.log($('.genreitem').val());
       }
    </script>
 </body>
