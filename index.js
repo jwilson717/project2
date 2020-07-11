@@ -191,7 +191,7 @@ app.post('/update', function (req, res) {
                client.query("DELETE FROM movie_has_genre WHERE movie_id = $1", [req.body.movie_id], function (){
                   if(err) {console.log(err.stack);} else {
                      let result;
-                     req.body.genres.forEach((genre) => {
+                     req.body.genres.forEach((genre, key) => {
                         client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES ($1, (SELECT genre_id FROM genres WHERE genre = $2))", [req.body.movie_id,genre], function (err, result) {
                            if (err) {
                               result = {success: false, msg: 'Genre not correctly added'};
@@ -199,8 +199,10 @@ app.post('/update', function (req, res) {
                               result = {success: true, msg: 'Movie updated successfully!'};
                            }
                         });
+                        if (Object.is(req.body.genres.length - 1, key)) {
+                           res.json(result);
+                        }
                      });
-                     res.json(result);
                   }
                });
             } else {
