@@ -115,6 +115,13 @@
 
             $.post('/update', $('#updateForm').serialize(), function(data) {
                if(data.success) {
+                  if ($('updateRes').hasClass('error')){
+                     $('#updateRes').removeClass('error');
+                  }
+                  $('#updateRes').html(data.msg);
+                  getDetails($('#movie_id').val());
+               } else {
+                  $('#updateRes').addClass('error');
                   $('#updateRes').html(data.msg);
                }
             });
