@@ -115,7 +115,7 @@
 
             $.post('/update', $('#updateForm').serialize(), function(data) {
                if(data.success) {
-                  if ($('updateRes').hasClass('error')){
+                  if ($('#updateRes').hasClass('error')){
                      $('#updateRes').removeClass('error');
                   }
                   $('#updateRes').html(data.msg);
@@ -173,7 +173,24 @@
          });
       }
 
-      
+      function refreshDetails(id){
+         $('#newRating').addClass('hide');
+         $('#newGenres').addClass('hide');
+         $('#updateForm')[0].reset();
+         let info = {id: id};
+         $('#movie_id').val(id);
+         $.post('/details', info, function (data){
+            $('#movieDetailTitle').html(data[0].title);
+            $('#drating').html(data[0].rating);
+            $('#newDescription').attr('placeholder', data[0].description);
+            $('#newRelease').attr('placeholder', data[0].year);
+            let genreList = '';
+            data.forEach((item) => {
+               genreList += "<li class='genreItem'>" + item.genre + "</li>";
+            });
+            $('#genres').html(genreList);
+         });
+      }
    </script>
 </body>
 </html>
