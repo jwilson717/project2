@@ -187,15 +187,19 @@ app.post('/update', function (req, res) {
             console.log(err.stack);
             res.json({success: false, msg: 'Error updating movie'});
          } else {
-            req.body.genres.forEach((genre) => {
-               client.query("DELETE FROM movie_has_genre WHERE movie_id = $1; INSERT INTO movie_has_genre (movie_id, genre_id) VALUES ($1, (SELECT genre_id FROM genres WHERE genre = $2))", [req.body.movie_id,genre], function (err, result) {
-                  if (err) {
-                     res.json({success: false, msg: 'Genre not correctly added'});
-                  } else {
-                     res.json({success: true, msg: 'Movie updated successfully!'});
-                  }
+            if (req.body.genres){
+               req.body.genres.forEach((genre) => {
+                  client.query("DELETE FROM movie_has_genre WHERE movie_id = $1; INSERT INTO movie_has_genre (movie_id, genre_id) VALUES ($1, (SELECT genre_id FROM genres WHERE genre = $2))", [req.body.movie_id,genre], function (err, result) {
+                     if (err) {
+                        res.json({success: false, msg: 'Genre not correctly added'});
+                     } else {
+                        res.json({success: true, msg: 'Movie updated successfully!'});
+                     }
+                  });
                });
-            });
+            } else {
+               res.json({success: true, msg: 'Movie updated successfully!'});
+            }
          }
       });
    });
