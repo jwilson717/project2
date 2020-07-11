@@ -119,7 +119,7 @@
                      $('#updateRes').removeClass('error');
                   }
                   $('#updateRes').html(data.msg);
-                  getDetails($('#movie_id').val());
+                  refreshDetails($('#movie_id').val());
                } else {
                   $('#updateRes').addClass('error');
                   $('#updateRes').html(data.msg);
