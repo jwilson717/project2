@@ -127,6 +127,20 @@
             });
          });
 
+         $('#delete').click(function (){
+            let info = {id: $('#movie_id')};
+            $.post('/delete',info, function(data){
+               if (data.success){
+                  if ($('#updateRes').hasClass('error')){
+                     $('#updateRes').removeClass('error');
+                  }
+                  $('#updateRes').html(data.msg);
+               } else {
+                  $('#updateRes').html(data.msg);
+               }
+            });
+         });
+
       });
 
       function display(movie) {

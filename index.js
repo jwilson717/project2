@@ -199,6 +199,7 @@ app.post('/update', function (req, res) {
                               result = {success: true, msg: 'Movie updated successfully!'};
                            }
                            if (req.body.genres[req.body.genres.length - 1] == genre) {
+                              done();
                               res.json(result);
                            }
                         });
@@ -210,6 +211,31 @@ app.post('/update', function (req, res) {
             }
          }
       });
+   });
+});
+
+app.post('/delete', function (req, res) {
+   pool.connect(function (err, client, done){
+      if (err) {
+         console.log(err.stack);
+      } else {
+         client.query('DELETE FROM movie_has_genre WHERE movie_id = $1', [req.body.id], function (err, response) {
+            if (err) {
+               console.log(err.stack);
+               res.json({success: false, msg: 'Error deleting movie'});
+            } else {
+               client.query("DELETE FROM movies WHERE movie_id = $1", [req.body.id], function (err, result) {
+                  done();
+                  if (err) {
+                     console.log(err.stack);
+                     res.json({success: false, msg: 'Error deleting movie'});
+                  } else {
+                     res.json({success:true, msg: 'Movie successfully deleted!'})
+                  }
+               });
+            }
+         });   
+      }
    });
 });
 
