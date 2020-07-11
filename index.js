@@ -132,6 +132,7 @@ app.post('/addMovie', function(req, res) {
 
       client.query("INSERT INTO movies (title, year, rating_id, description, account_id) VALUES ($1, $2, (SELECT rating_id FROM rating WHERE rating = $3),$4, (SELECT account_id FROM accounts WHERE username = $5))", [req.body.title, req.body.year, req.body.rating, req.body.description, req.session.username], function (err, response) {
          if (err) {
+            console.log(err.stack);
             res.json({success: false, msg: 'Error adding movie'});
          } else {
             if(req.body.genres) {
