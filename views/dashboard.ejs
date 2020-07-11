@@ -95,6 +95,7 @@
                $('#newGenres').removeClass('hide');
             } else {
                $('#newGenres').addClass('hide');
+
             }
          });
 
@@ -102,8 +103,13 @@
             if ($('#newRelease').val() == '') {
                $('#newRelease').val($('#newRelease').attr('placeholder'));
             }
+            
             if ($('#newRating').val() == 'select') {
                $('#newRating').val($('#newRating').attr('placeholder'));
+            }
+
+            if ($('#newDescription').val() == '') {
+               $('#newDescription').val($('#newDescription').attr('placeholder'));
             }
             $.post('/update', $('#updateForm').serialize(), function(data) {
                console.log(data);
