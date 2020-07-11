@@ -36,7 +36,7 @@
                   <div class='genres hide' id='newGenres'>
                      <% genres.forEach((item) => {%>
                         <div class='form-check form-check-inline'>
-                           <input type="checkbox" name="genres[]" id="<%= item.genre%>" value='<%= item.genre%>' class='form-check-input'>
+                           <input type="checkbox" name="genres[]" id="<%= item.genre%>" value='<%= item.genre%>' class='form-check-input genreCheck'>
                            <label for="<%= item.genre%>" class='form-check-label'><%= item.genre%></label>
                         </div>
                      <% });%>

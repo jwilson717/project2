@@ -105,12 +105,17 @@
             }
 
             if ($('#newRating').val() == 'select') {
-               $('#newRating').val($('#drating').val());
+               $('#newRating').val($('#drating').text());
             }
 
             if ($('#newDescription').val() == '') {
                $('#newDescription').val($('#newDescription').attr('placeholder'));
             }
+
+            if ($('#newGenres').hasClass('hide')) {
+               $('.genreCheck').removeAttr('checked');
+            }
+
             $.post('/update', $('#updateForm').serialize(), function(data) {
                console.log(data);
             });
