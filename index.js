@@ -172,7 +172,6 @@ app.post('/details', function (req, res) {
             console.log(err.stack);
             res.send('Error Occured');
          } else {
-            console.log(response);
             res.json(response.rows);
          }
       });
