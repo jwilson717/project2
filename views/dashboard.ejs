@@ -167,7 +167,7 @@
 
       function selectGenres() {
          $('.genreitem').each(function () {
-            console.log($(this).val());
+            $('#' + $(this).val()).prop('checked', true);
          });
       }
    </script>
