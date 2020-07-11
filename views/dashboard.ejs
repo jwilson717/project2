@@ -113,7 +113,7 @@
             }
 
             if ($('#newGenres').hasClass('hide')) {
-               $('.genreCheck').removeAttr('checked');
+               $('#updateForm input:checkbox').removeAttr('checked');
             }
 
             $.post('/update', $('#updateForm').serialize(), function(data) {
