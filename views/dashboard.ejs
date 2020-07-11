@@ -128,7 +128,7 @@
          });
 
          $('#delete').click(function (){
-            let info = {id: $('#movie_id')};
+            let info = {id: $('#movie_id').val()};
             $.post('/delete',info, function(data){
                if (data.success){
                   if ($('#updateRes').hasClass('error')){
