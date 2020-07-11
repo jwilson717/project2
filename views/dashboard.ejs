@@ -166,7 +166,9 @@
       }
 
       function selectGenres() {
-         console.log($('.genreitem').val());
+         $('.genreitem').each(function () {
+            console.log($(this).val());
+         });
       }
    </script>
 </body>
