@@ -180,6 +180,25 @@ app.post('/details', function (req, res) {
 
 app.post('/update', function (req, res) {
    console.log(req.body);
+   pool.connect(function (err, client, done){
+      if (err) {console.log(err.stack);}
+      client.query("UPDATE movies set year = $1, rating_id = (SELECT rating_id FROM rating WHERE rating = $2), description = $3 WHERE movie_id = $4", [req.body.newRelease, req.body.newRating, req.body.newDescription, req.body.movie_id], function (err, response) {
+         if (err) {
+            console.log(err.stack);
+            res.json({success: false, msg: 'Error updating movie'});
+         } else {
+            req.body.genres.forEach((genre) => {
+               client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES ($1, (SELECT genre_id FROM genres WHERE genre = $2))", [req.body.movie_id,genre], function (err, result) {
+                  if (err) {
+                     res.json({success: false, msg: 'Genre not correctly added'});
+                  } else {
+                     res.json({success: true, msg: 'Movie updated successfully!'});
+                  }
+               });
+            });
+         }
+      });
+   });
 });
 
 app.listen(PORT);

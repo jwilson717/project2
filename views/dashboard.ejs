@@ -149,6 +149,7 @@
          $('#newGenres').addClass('hide');
          $('#updateForm')[0].reset();
          let info = {id: id};
+         $('#movie_id').val(id);
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
             $('#movieDetailTitle').html(data[0].title);
