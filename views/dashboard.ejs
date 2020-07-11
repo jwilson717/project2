@@ -15,7 +15,7 @@
       </div>
       <h1>Movie Catalog</h1>
       <p class='ml-3'>Welcome <%= user%></p>
-      <div class='text-right'>
+      <div class='text-center text-md-right'>
          <button type='button' class="btn btn-primary" data-toggle='modal' data-target='#newMovie' id='addMovie'>Add Movie</button>
       </div>
    </div>
@@ -144,7 +144,7 @@
       });
 
       function display(movie) {
-         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result' onclick='getDetails(this.id)'><p class='mb-0 text-center text=md-left font-weight-bold title'>" 
+         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result' onclick='getDetails(this.id)'><p class='mb-0 text-center font-weight-bold title'>" 
             + movie.title + "</p></div></button>";
          return out;
       }
