@@ -166,10 +166,8 @@
       }
 
       function selectGenres() {
-         console.log('select');
          $('.genreItem').each(function () {
-            console.log('prop');
-            $('#' + $(this).val()).prop('checked', true);
+            console.log($('#' + $(this).val()));
          });
       }
    </script>
