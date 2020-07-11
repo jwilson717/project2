@@ -198,10 +198,10 @@ app.post('/update', function (req, res) {
                            } else {
                               result = {success: true, msg: 'Movie updated successfully!'};
                            }
+                           if (req.body.genres[req.body.genres.length - 1] == genre) {
+                              res.json(result);
+                           }
                         });
-                        if (req.body.genres[req.body.genres.length - 1] == genre) {
-                           res.json(result);
-                        }
                      });
                   }
                });
