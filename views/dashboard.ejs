@@ -136,7 +136,7 @@
       function getDetails(id) {
          $('#newRating').addClass('hide');
          $('#newRating').addClass('hide');
-         $('#updateForm').reset();
+         $('#updateForm')[0].reset();
          let info = {id: id};
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
