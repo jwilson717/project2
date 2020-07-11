@@ -95,7 +95,7 @@
                $('#newGenres').removeClass('hide');
             } else {
                $('#newGenres').addClass('hide');
-
+               $('input:checkbox').removeAttr('checked');
             }
          });
 
@@ -112,9 +112,9 @@
                $('#newDescription').val($('#newDescription').attr('placeholder'));
             }
 
-            if ($('#newGenres').hasClass('hide')) {
-               $('input:checkbox').removeAttr('checked');
-            }
+            // if ($('#newGenres').hasClass('hide')) {
+            //    $('input:checkbox').removeAttr('checked');
+            // }
 
             $.post('/update', $('#updateForm').serialize(), function(data) {
                console.log(data);
