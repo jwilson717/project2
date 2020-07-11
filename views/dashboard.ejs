@@ -100,8 +100,11 @@
 
          $('#update').click(function () {
             if ($('#newRelease').val() == '') {
-                  $('#newRelease').val($('#newRelease').attr('placeholder'));
-               }
+               $('#newRelease').val($('#newRelease').attr('placeholder'));
+            }
+            if ($('#newRating').val() == 'select') {
+               $('#newRating').val($('#newRating').attr('placeholder'));
+            }
             $.post('/update', $('#updateForm').serialize(), function(data) {
                console.log(data);
             });
