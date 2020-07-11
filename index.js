@@ -17,6 +17,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true }));
 app.use(bodyParser.json());
+app.use(logRequest);
 
 app.get('/newaccount', function (req, res) {
    res.render('newaccount', {query: req.query});
@@ -124,7 +125,6 @@ app.post('/login', function (req, res){
 });
 
 app.post('/addMovie', function(req, res) {
-   console.log(req.body);
    pool.connect(function (err, client, done) {
       if (err) {
          console.log(err.stack);
@@ -179,6 +179,15 @@ app.post('/details', function (req, res) {
    });
 });
 
+app.post('/update', function (req, res) {
+   console.log(req.body);
+});
+
 app.listen(PORT);
 console.log(`Listening on port ${PORT}`);
 
+function logRequest(req, res, next) {
+   console.log("Received a request for: " + req.url);
+
+   next();
+}

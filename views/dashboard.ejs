@@ -98,6 +98,12 @@
             }
          });
 
+         $('#update').click(function () {
+            $.post('/update', $('#updateForm').serialize(), function(data) {
+               console.log(data);
+            });
+         });
+
       });
 
       function display(movie) {
