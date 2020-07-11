@@ -136,12 +136,17 @@ app.post('/addMovie', function(req, res) {
             res.json({success: false, msg: 'Error adding movie'});
          } else {
             if(req.body.genres) {
+               var response;
                req.body.genres.forEach(genre => {
                   client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES (currval('movies_movie_id_seq'), (SELECT genre_id FROM genres WHERE genre = $1))", [genre], function (err, result) {
                      if (err) {
-                        res.json({success: false, msg: 'Genres not correctly added'});
+                        response = {success: false, msg: 'Genres not correctly added'};
                      } else {
-                        res.json({success: true, msg: 'Movie added successfully!'});
+                        response = {success: true, msg: 'Movie added successfully!'};
+                     }
+                     if (req.body.genres[req.body.genres.length - 1] == genre) {
+                        done();
+                        res.json(response);
                      }
                   });
                });
