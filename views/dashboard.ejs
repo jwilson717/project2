@@ -83,11 +83,19 @@
          });
 
          $('#changeRating').click(function () {
-            $('#newRating').removeClass('hide');
+            if ($('#newRating').hasClass('hide')){
+               $('#newRating').removeClass('hide');
+            } else {
+               $('#newRating').addClass('hide');
+            }
          });
 
          $('#changeGenres').click(function () {
-            $('#newGenres').removeClass('hide');
+            if ($('#newGenres').hasClass('hide')){
+               $('#newGenres').removeClass('hide');
+            } else {
+               $('#newGenres').addClass('hide');
+            }
          });
 
       });
