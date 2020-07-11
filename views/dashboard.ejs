@@ -87,6 +87,7 @@
                $('#newRating').removeClass('hide');
             } else {
                $('#newRating').addClass('hide');
+               $('#newRating').val('select');
             }
          });
 
@@ -95,7 +96,7 @@
                $('#newGenres').removeClass('hide');
             } else {
                $('#newGenres').addClass('hide');
-               $('input:checkbox').removeAttr('checked');
+               $('.genreCheck').prop('checked', false);
             }
          });
 
@@ -111,10 +112,6 @@
             if ($('#newDescription').val() == '') {
                $('#newDescription').val($('#newDescription').attr('placeholder'));
             }
-
-            // if ($('#newGenres').hasClass('hide')) {
-            //    $('input:checkbox').removeAttr('checked');
-            // }
 
             $.post('/update', $('#updateForm').serialize(), function(data) {
                console.log(data);
