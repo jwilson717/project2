@@ -100,6 +100,11 @@
 
          $('#update').click(function () {
             $.post('/update', $('#updateForm').serialize(), function(data) {
+               if ($('#newRelease').val() == '') {
+                  $('#newRelease').val($('#newRelease').attr('placeholder'));
+               }
+
+               if ()
                console.log(data);
             });
          });
@@ -133,6 +138,7 @@
       function getDetails(id) {
          $('#newRating').addClass('hide');
          $('#newRating').addClass('hide');
+         $('#updateForm').reset();
          let info = {id: id};
          $('#movieDetails').modal('toggle');
          $.post('/details', info, function (data){
