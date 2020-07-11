@@ -114,7 +114,9 @@
             }
 
             $.post('/update', $('#updateForm').serialize(), function(data) {
-               console.log(data);
+               if(data.success) {
+                  $('#updateRes').html(data.msg);
+               }
             });
          });
 
