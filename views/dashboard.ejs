@@ -166,7 +166,9 @@
       }
 
       function selectGenres() {
+         console.log('select');
          $('.genreitem').each(function () {
+            console.log('prop');
             $('#' + $(this).val()).prop('checked', true);
          });
       }
