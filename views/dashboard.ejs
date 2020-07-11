@@ -94,7 +94,6 @@
          $('#changeGenres').click(function () {
             if ($('#newGenres').hasClass('hide')){
                $('#newGenres').removeClass('hide');
-               selectGenres();
             } else {
                $('#newGenres').addClass('hide');
                $('.genreCheck').prop('checked', false);
@@ -165,11 +164,7 @@
          });
       }
 
-      function selectGenres() {
-         $('li').each(function () {
-            console.log($(this).text());
-         });
-      }
+      
    </script>
 </body>
 </html>
