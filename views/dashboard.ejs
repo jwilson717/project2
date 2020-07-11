@@ -145,10 +145,14 @@
             });
          });
 
+         $('.result').click(function () {
+            getDetails($(this).attr('id'));
+         });
+
       });
 
       function display(movie) {
-         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result' onclick='getDetails(this.id)'><p class='mb-0 text-center font-weight-bold title'>" 
+         let out = "<div id='" + movie.movie_id + "' class='rounded shadow mt-2 p-2 result'><p class='mb-0 text-center font-weight-bold title'>" 
             + movie.title + "</p></div></button>";
          return out;
       }
