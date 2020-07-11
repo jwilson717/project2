@@ -193,7 +193,6 @@ app.post('/update', function (req, res) {
                });
                req.body.genres.forEach((genre) => {
                   client.query("INSERT INTO movie_has_genre (movie_id, genre_id) VALUES ($1, (SELECT genre_id FROM genres WHERE genre = $2))", [req.body.movie_id,genre], function (err, result) {
-                     done();
                      if (err) {
                         res.json({success: false, msg: 'Genre not correctly added'});
                      } else {
