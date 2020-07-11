@@ -185,10 +185,12 @@
             $('#newDescription').attr('placeholder', data[0].description);
             $('#newRelease').attr('placeholder', data[0].year);
             let genreList = '';
-            data.forEach((item) => {
-               genreList += "<li class='genreItem'>" + item.genre + "</li>";
-            });
-            $('#genres').html(genreList);
+            if (data.genre.length >=1) {
+               data.forEach((item) => {
+                  genreList += "<li class='genreItem'>" + item.genre + "</li>";
+               });
+               $('#genres').html(genreList);
+            }
          });
       }
 
