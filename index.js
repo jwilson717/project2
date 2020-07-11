@@ -150,7 +150,6 @@ app.post('/addMovie', function(req, res) {
                      }
                   });
                });
-               done();
             } else {
                done();
                res.json({success: true, msg: 'Movie added successfully!'});
